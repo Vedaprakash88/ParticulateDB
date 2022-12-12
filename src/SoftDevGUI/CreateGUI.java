@@ -4,6 +4,8 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
+
 import static SoftDevGUI.MainQueryHandler.first;
 public class CreateGUI extends JFrame implements ActionListener {
     //Constructor - creates a window
@@ -329,12 +331,14 @@ public class CreateGUI extends JFrame implements ActionListener {
         if (event.getSource() == addStat) {
 
             AddStation newStat = new AddStation();
-            int t = 0;
+            int t;
             t = Integer.parseInt(tarAddStat.getText());
 
             int a = 0;
-            a = Integer.parseInt(actAddText.getText());
-            int res = newStat.addStation((staIdAddStat.getText()), (dateAddStat.getText()), t, a);
+            if (!Objects.equals(actAddText.getText(), "")) {
+                a = Integer.parseInt(actAddText.getText());
+            }
+            newStat.addStation((staIdAddStat.getText()), (dateAddStat.getText()), t, a);
             this.dispose();
             CreateGUI guiWindow = new CreateGUI();
             guiWindow.setVisible(true);
@@ -347,10 +351,10 @@ public class CreateGUI extends JFrame implements ActionListener {
         if (event.getSource() == staListExisting) {
             statSelected = (String) staListExisting.getSelectedItem();
             staIdCalVarText.setText(statSelected);
-            if (statSelected == "Select") {
+            if (Objects.equals(statSelected, "Select")) {
                 dateCalVarText.setText(null);
                 tarCalVarText.setText(null);
-            } else if (first == true){
+            } else if (first){
                 UsefulMethods bringNewData = new UsefulMethods();
                 String[] latestData = bringNewData.findIndex(statSelected);
                 dateCalVarText.setText(latestData[0]);
@@ -378,7 +382,7 @@ public class CreateGUI extends JFrame implements ActionListener {
 
         if (event.getSource() == updateStat) {
             statSelected2 = staIdCalVarText.getText();
-            if (statSelected2 == "Select") {
+            if (Objects.equals(statSelected2, "Select")) {
                 JOptionPane.showMessageDialog(null, "Select a Station First", "Title", JOptionPane.WARNING_MESSAGE);
             } else {
                 int t;

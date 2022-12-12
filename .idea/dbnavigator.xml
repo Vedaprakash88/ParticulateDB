@@ -33,9 +33,7 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="b16162ba-af6a-481a-9496-d9d3eab3b79f" object-ref="schemas/icecreame/tables/data" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="b16162ba-af6a-481a-9496-d9d3eab3b79f" />
